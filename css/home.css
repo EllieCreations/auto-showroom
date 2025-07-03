@@ -1,0 +1,336 @@
+@import url('root.css');
+
+/* Stili generali */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.menu-toggle {
+    display: none;
+    /* Nasconde l'icona hamburger su schermi grandi */
+}
+
+
+/* Sezione eroe */
+#hero {
+    min-height: 80vh;
+    background: url('../assets/images/wallpaperCar2.jpg') no-repeat center center/cover;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+    z-index: 1;
+}
+
+#hero:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+#hero .hero-content {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+#hero h1 {
+    font-size: 4rem;
+    margin: 0 0 30px 0px;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+
+
+/* Sezione principale */
+#main-content {
+    background: var(--color-white);
+    margin-top: -50px;
+    border-radius: 50px 50px 0 0;
+    padding: 3rem 0;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    position: relative;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* Griglia dei loghi */
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    background: var(--color-back-cards);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: -webkit-fill-available;
+}
+
+.logo-card>* {
+    flex-grow: 1;
+    /* Espandi uniformemente */
+}
+
+.logo-card img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+}
+
+.logo-card p {
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
+    align-content: center;
+}
+
+.logo-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Due card principali */
+.main-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+.main-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    background: var(--color-back-cards);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 300px;
+}
+
+.main-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+}
+
+.card-content {
+    display: flex; /* Dispone gli elementi in fila */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-evenly; /* Distribuisce lo spazio uniformemente */
+    width: 100%; /* Larghezza del contenitore */
+    gap: 10px; /* Spazio tra il logo e il testo */
+}
+
+.card-content img {
+    flex: 1; /* Occupa metà dello spazio disponibile */
+    max-width: 50%; /* Imposta un limite massimo del 50% della larghezza */
+    height: auto; /* Mantiene le proporzioni */
+    object-fit: contain; /* Garantisce che l'immagine non si distorca */
+    display: block; /* Rimuove margini aggiuntivi come inline-block */
+}
+
+.card-content p {
+    flex: 1; /* Occupa metà dello spazio disponibile */
+    margin: 0; /* Rimuove i margini predefiniti */
+    font-size: 1rem; /* Dimensione del testo */
+    text-align: center; /* Centra il testo orizzontalmente */
+    word-wrap: break-word; /* Impedisce che il testo fuoriesca */
+    line-height: 1.5; /* Spaziatura comoda tra le righe */
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--color-accent);
+}
+
+.reasons-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reason-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    border-radius: 10px;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: -webkit-fill-available;
+}
+
+.reason-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 850px) {
+
+    #hero{
+        justify-content: flex-end;
+    }
+
+    #hero h1 {
+        font-size: 3rem;
+    }
+
+    #hero .hero-content{
+        transform: translateY(-50px);
+    }
+
+    .logo-grid {
+        display: flex;
+        flex-wrap: nowrap; /* Mantiene tutte le card in una riga */
+        justify-content: space-evenly;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 1rem 1rem;
+    }
+
+    .logo-card {
+        flex: 0 0 125px; /* Dimensioni fisse per le card */
+        scroll-snap-align: start; /* Allinea al punto iniziale dello scroll */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 160px; /* Altezza fissa per uniformità */
+        box-sizing: border-box;
+    }
+
+    .logo-card img {
+        max-width: 80px; /* Imposta una dimensione massima uniforme per le immagini */
+        max-height: 80px;
+        margin-bottom: 10px;
+        object-fit: contain; /* Mantiene il rapporto immagine */
+    }
+
+    .logo-card p {
+        font-size: 0.9rem; /* Adatta la dimensione del testo */
+        margin: 0;
+        text-align: center;
+    }
+
+    .main-cards {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 1rem;
+    }
+
+    .logo-grid::-webkit-scrollbar {
+        height: 8px;
+        /* Altezza della barra */
+        background: #f4f4f9;
+        /* Colore di sfondo */
+        border-radius: 5px;
+    }
+
+    .logo-grid::-webkit-scrollbar-thumb {
+        background: var(--color-secondary);
+        /* Colore della barra di scorrimento */
+        border-radius: 5px;
+    }
+
+    .logo-grid::-webkit-scrollbar-thumb:hover {
+        background: var(--color-primary);
+        /* Colore quando si passa il mouse */
+    }
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+    #hero {
+        min-height: 95vh;
+        padding: 2rem;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    .logo-grid {
+        padding: 0.5rem;
+    }
+
+    .main-card {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 288px) {
+    #hero {
+        min-height: 115vh;
+    }
+}

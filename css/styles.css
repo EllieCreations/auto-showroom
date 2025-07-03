@@ -1,0 +1,645 @@
+@import url("root.css");
+
+/* ===========================
+   Stili Generali
+   =========================== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: var(--color-white);
+  color: var(--color-text);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  /* Evita scrolling orizzontale */
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* Include padding e border nella larghezza */
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow-x: hidden;
+  padding: 0 1rem 0 1rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ===========================
+   Layout (Container, Sidebar, Main Content)
+   =========================== */
+/* Contenitore generale della sidebar */
+.sidebar {
+  width: 25%;
+  max-height: fit-content;
+  margin-top: 85px;
+  /* Mantiene spazio sotto l'header */
+  order: 1;
+
+  /* Spaziatura interna e card style */
+  padding: 1rem;
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Titolo o intestazioni nella sidebar */
+.sidebar h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Lista di link (se presente) */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  /* Spazio sotto la lista */
+}
+
+.sidebar ul li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar ul li a {
+  display: block;
+  /* Occupa tutto lo spazio orizzontale */
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  padding: 0.5rem;
+  transition: background-color var(--transition-duration) ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+.sidebar .dettagli {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: var(--color-white);
+  box-sizing: border-box;
+  order: 2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.main-content h2 {
+  color: var(--color-primary);
+}
+
+.main-content p {
+  line-height: 1.6;
+}
+/* ===========================
+   informazioni nella sidebar di details.php
+   =========================== */
+
+.car-info-list li
+{
+  text-shadow: 0 0 10px rgba(255, 255, 255, 10);
+}
+
+
+/* ===========================
+   Filtri (Nuovo Stile con Transizione)
+   =========================== */
+/* RIMOSSE le vecchie regole con display:none; / height:0; */
+/* Sostituite con animazione su max-height & opacity */
+
+#filter-form {
+  /* Chiuso: zero altezza, zero opacità */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  /* Nessun padding quando è chiuso */
+
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+  /* Transizioni */
+  transition: max-height var(--transition-duration) ease,
+    opacity var(--transition-duration) ease,
+    padding var(--transition-duration) ease;
+}
+
+#filter-form.active {
+  /* Aperto */
+  max-height: fit-content;
+  /* Imposta un valore suff. grande per contenere i filtri */
+  opacity: 1;
+  padding: 1rem;
+  /* Padding completo quando aperto */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===========================
+   Sort Menu (Ordinamento)
+   =========================== */
+.sort-menu {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sort-menu label {
+  font-weight: bold;
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.sort-menu select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border var(--transition-duration) ease;
+}
+
+.sort-menu select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Ogni gruppo di filtro come “card” */
+.filter-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border var(--transition-duration) ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.sidebar form button,
+.sidebar form .reset-filters {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-duration) ease,
+    transform var(--transition-duration) ease;
+}
+
+/* Pulsante “Applica Filtri” */
+.sidebar form button {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.sidebar form button:hover {
+  background-color: var(--color-accent);
+  transform: scale(1.02);
+}
+
+/* Link “Reset Filtri” */
+.sidebar form .reset-filters {
+  background-color: #e0e0e0;
+  color: var(--color-text);
+  text-align: center;
+  text-decoration: none;
+}
+
+.sidebar form .reset-filters:hover {
+  background-color: #ccc;
+  transform: scale(1.02);
+}
+
+/* ===========================
+   .filter-header & .toggle-filters
+   =========================== */
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.filter-header h3 {
+  margin: 0;
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+}
+
+/* Bottone toggle filtri */
+.toggle-filters {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-white);
+  transition: transform var(--transition-duration) ease;
+}
+
+.toggle-filters:hover {
+  transform: scale(1.1);
+}
+
+
+/* ===========================
+   Impaginazione e Griglia
+   =========================== */
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 0;
+}
+
+.car-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-duration) ease,
+    box-shadow var(--transition-duration) ease;
+
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.car-image {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.car-card .btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color var(--transition-duration) ease;
+}
+
+.car-card .btn:hover {
+  background-color: var(--color-accent);
+}
+
+/* ===========================
+   Paginazione
+   =========================== */
+/* Paginazione */
+.pagination {
+  display: flex; /* Disposizione in riga */
+  justify-content: center; /* Centra i numeri */
+  align-items: center; /* Allinea verticalmente */
+  gap: 0.5rem; /* Spazio tra i numeri */
+  margin-top: 20px;
+}
+
+.pagination p {
+  margin-bottom: 0; /* Rimuove margine */
+  font-weight: bold;
+}
+
+.pagination-link {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #f1f1f1;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-link:hover {
+  background-color: #ddd;
+}
+
+.pagination-link.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  font-weight: bold;
+}
+
+/* Pulsanti Precedente e Successivo */
+.pagination-prev,
+.pagination-next {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-prev:hover,
+.pagination-next:hover {
+  background-color: var(--color-accent);
+}
+
+/* ===========================
+   Contatti
+   =========================== */
+.contact-page {
+  align-self: center;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 2rem;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact-form-wrapper,
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.contact-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--color-back-cards);
+  transition: border-color var(--transition-duration) ease,
+    box-shadow var(--transition-duration) ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 4px rgba(52, 73, 94, 0.2);
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.form-button {
+  display: block;
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition-duration) ease,
+    transform var(--transition-duration) ease;
+}
+
+.form-button:hover {
+  background-color: var(--color-accent);
+  transform: scale(1.02);
+}
+
+/* ===========================
+   Media Queries
+   =========================== */
+
+/* Tablet e Mobile: Modifica la navbar */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+
+  .sort-menu {
+    flex-direction: column;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-secondary);
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transform: translateY(-20px);
+    transition: max-height var(--transition-duration) ease,
+      opacity var(--transition-duration) ease,
+      visibility var(--transition-duration) ease,
+      transform var(--transition-duration) ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .nav-links.show {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    margin: 0;
+  }
+
+  .nav-links li {
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-links li a {
+    padding: 1rem;
+    display: block;
+    color: var(--color-text-light);
+  }
+
+  .nav-links li a:hover {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+  }
+
+  /* Nel mobile usiamo comunque max-height & opacity per #filter-form */
+  .toggle-filters {
+    display: block;
+  }
+}
+
+/* Smartphone: Sidebar prima del Main Content */
+@media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    order: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .main-content {
+    width: 100%;
+    order: 2;
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .main-content,
+  .sidebar {
+    padding: 1rem;
+  }
+}
+
+/* Smartphone e schermi molto piccoli */
+@media (max-width: 288px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .main-content {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .nav-links li a {
+    padding: 0.5rem;
+  }
+}
+
+/* ===========================
+   Miglioramenti Navbar Desktop
+   =========================== */
+@media (min-width: 769px) {
+  .nav-links li a {
+    padding: 0.75rem 4rem;
+  }
+}
+
+/* ===========================
+   Miglioramenti Visivi e Accessibilità
+   =========================== */
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+  
+  outline-offset: 2px;
+}

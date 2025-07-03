@@ -1,0 +1,55 @@
+# Attiva il modulo di riscrittura
+RewriteEngine On
+RewriteBase /
+
+# Reindirizza URL di directory senza slash 
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+[^/])$ /$1/ [R=301,L]
+
+# Reindirizzamenti personalizzati SEO-friendly
+RewriteRule ^admin$ admin/admin.php [L]
+RewriteRule ^aggiungi-auto$ admin/add_car.php [L]
+RewriteRule ^modifica-auto/([0-9]+)$ admin/edit_car.php?id=$1 [L]
+RewriteRule ^elimina-auto/([0-9]+)$ admin/delete_car.php?id=$1 [L]
+
+# Rimuove ".php" dagli URL se il file esiste (opzionale, attento a conflitti)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ $1.php [L]
+
+# Impedisce l'accesso diretto al file README.md
+<Files "README.md">
+    Require all denied
+</Files>
+
+# Impedisce accesso a file nascosti (.env, .gitignore, ecc.)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Blocca accesso a directory riservate
+RedirectMatch 403 ^/functions/
+RedirectMatch 403 ^/src/
+RedirectMatch 403 ^/\.dev-tools/
+
+# Gestione errori personalizzati
+ErrorDocument 404 /404.php
+
+# Forza charset UTF-8
+AddDefaultCharset UTF-8
+
+# Caching di base per migliorare performance
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 30 days"
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType image/svg+xml "access plus 30 days"
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+</IfModule>
+
+# Evita la visualizzazione dell'indice delle cartelle
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>

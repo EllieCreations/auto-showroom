@@ -1,0 +1,95 @@
+
+/* ===========================
+   Footer
+   =========================== */
+   footer {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-left a,
+.footer-right a {
+    color: var(--color-text-light);
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color var(--transition-duration), transform var(--transition-duration);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.footer-left a:last-child,
+.footer-right a:last-child {
+    margin-right: 0;
+}
+
+.footer-left a:hover,
+.footer-right a:hover {
+    color: var(--color-text-light);
+    background-color: var(--color-primary);
+    transform: scale(1.4);
+}
+
+.footer-center {
+    flex: 1;
+    text-align: center;
+    margin: 1rem 0;
+    color: var(--color-text-light);
+}
+
+
+/* ===========================
+   Media Queries
+   =========================== */
+
+/* Tablet e Mobile: Modifica la navbar */
+@media (max-width: 768px) {
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left,
+    .footer-right {
+        margin-bottom: 0;
+    }
+}
+
+/* Smartphone: Sidebar prima del Main Content */
+@media (max-width: 480px) {
+    
+    footer {
+        padding: 0.5rem;
+    }
+
+    .footer-left a,
+    .footer-right a {
+        font-size: 1.2rem;
+    }
+
+    .footer-left,
+    .footer-right {
+        margin-bottom: 0;
+    }
+}

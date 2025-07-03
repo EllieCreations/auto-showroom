@@ -1,0 +1,90 @@
+/* ===========================
+   Barra di Ricerca e Menu di Ordinamento
+   =========================== */
+
+/* Limita la larghezza della searchbar */
+.search-bar {
+    max-width: 400px;
+    margin: 0 auto 1rem auto;
+    background-color: var(--color-light);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form interno (input + pulsante) */
+.search-bar form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%; /* Cambia da 5px a 100% per adattarlo al contenitore */
+}
+
+/* Input di testo della barra di ricerca */
+.search-bar input[type="text"] {
+    flex: 1; /* Occupa tutto lo spazio disponibile */
+    min-width: 0; /* Impedisce che si estenda oltre il necessario */
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    transition: border var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+}
+
+/* Stato di focus dell’input */
+.search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 4px rgba(52, 73, 94, 0.2);
+}
+
+/* Pulsante di ricerca */
+.search-bar button {
+    flex-shrink: 0; /* Impedisce al pulsante di ridimensionarsi */
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) ease, transform var(--transition-duration) ease;
+}
+
+/* Hover e focus sul pulsante */
+.search-bar button:hover,
+.search-bar button:focus {
+    background-color: var(--color-accent);
+    transform: scale(1.02);
+}
+
+/* ===========================
+   Media Queries
+   =========================== */
+
+/* Tablet e Mobile: Modifica la navbar */
+@media (max-width: 768px) {
+    
+
+    .search-bar form {
+        flex-direction: column;
+    }
+
+    .search-bar input[type="text"],
+    .search-bar button {
+        width: 100%;
+        border-radius: 4px;
+        width: -webkit-fill-available;
+    }
+
+    .search-bar button {
+        margin-top: 0.5rem;
+        border-left: 1px solid #ccc;
+    }
+
+}
+

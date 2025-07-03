@@ -1,0 +1,429 @@
+@import url('root.css');
+@import url('message.css');
+
+/* ===================================================
+   Reset CSS
+=================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-white);
+    color: var(--color-little-black);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* ===================================================
+   Caricamento overlay
+=================================================== */
+
+/* Overlay che copre l'intera finestra */
+#loading-overlay {
+    display: none; /* di default nascosto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* semi-trasparente */
+    z-index: 9999; /* sopra tutto */
+    color: #fff;
+    text-align: center;
+    padding-top: 200px; /* per centrare il testo/spinner verticalmente */
+    font-size: 1.2em;
+  }
+  
+  /* Un semplice spinner “animato” (css only) */
+  .spinner {
+    margin: 0 auto 20px;
+    width: 50px;
+    height: 50px;
+    border: 6px solid #ccc;
+    border-top: 6px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Animazione di rotazione */
+  @keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+/* ===================================================
+   Header
+=================================================== */
+header {
+    background-color: var(--color-little-black);
+    color: var(--color-white);
+    padding: 15px 0;
+    border-bottom: 3px solid var(--color-primary);
+    text-align: center;
+}
+
+header h1 a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+header nav ul li a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: var(--color-accent);
+}
+
+/* ===================================================
+   Container
+=================================================== */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===================================================
+   Tabella responsiva
+=================================================== */
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: var(--color-white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.car-image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.styled-table thead {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: var(--color-back-cards);
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Il pulsante Espandi di default è nascosto in desktop */
+.toggle-btn {
+    display: none;
+}
+
+/* ===================================================
+   Pulsanti Modifica ed Elimina
+=================================================== */
+.button {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button.edit {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.button.edit:hover {
+    background-color: var(--color-primary);
+}
+
+.button.delete {
+    background-color: #dc3545;
+    color: var(--color-white);
+}
+
+.button.delete:hover {
+    background-color: #c82333;
+}
+
+/* ===================================================
+   Moduli (Aggiungi e Modifica Auto)
+=================================================== */
+.form-wrapper {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-little-black);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 8px var(--color-primary);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: var(--color-accent);
+}
+
+.form-group-inline {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.form-group-inline .form-group {
+    flex: 1;
+}
+
+/* ===================================================
+   Footer
+=================================================== */
+footer {
+    background-color: var(--color-little-black);
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    border-top: 3px solid var(--color-primary);
+}
+
+footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+footer a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: var(--color-accent);
+}
+
+
+/* ===================================================
+   Media Queries per dispositivi mobili
+=================================================== */
+@media (max-width: 768px) {
+
+    /* =============================
+       1) DI BASE (STATO COMPRESSO)
+       ============================= */
+
+    /* Mostra solo le colonne ID (classi .col-id / .car-id-toggle) e Immagine (classi .col-img / .car-img). */
+    .styled-table thead th:not(.col-id):not(.col-img) {
+        display: none;
+    }
+
+    .styled-table tbody td:not(.car-id-toggle):not(.car-img) {
+        display: none;
+    }
+
+    /*
+      Mantieni la tabella come "table-row" e "table-cell", così hai due colonne reali.
+      Se preferisci flex, ti mostro prima la soluzione tabella (più semplice).
+    */
+    .styled-table tbody tr {
+        display: table-row;
+        /* Tiene la riga come riga di tabella */
+    }
+
+    .styled-table tbody tr td {
+        display: table-cell;
+        /* Ogni cella rimane una cella di tabella */
+        vertical-align: middle;
+    }
+
+    /* Imposta le due celle (ID e Immagine) ciascuna al 50% */
+    .car-id-toggle,
+    .car-img {
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+    /* Eventualmente aggiungi padding extra alla colonna ID */
+    .car-id-toggle {
+        padding: 20px;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    /* Mostra il pulsante toggle su mobile */
+    .toggle-btn {
+        display: inline-block;
+        padding: 6px 12px;
+        border: none;
+        background-color: var(--color-secondary);
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+    /* ============================
+       2) STATO ESPANSO (.expanded)
+       ============================ */
+    /*
+      Quando la riga è espansa:
+      - Passa in display: block (per layout a blocchi).
+      - Mostra TUTTE le colonne come blocchi verticali (width: 100%).
+      - Nascondi colonna Immagine per la riga espansa.
+    */
+    .styled-table tbody tr.expanded {
+        display: block !important;
+        /* sovrascrive display: table-row */
+    }
+
+    .styled-table tbody tr.expanded td {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 10px;
+        border: none;
+        text-align: left;
+        /* se preferisci a sinistra in modalità blocco */
+    }
+
+    .styled-table tbody tr.expanded td.car-img {
+        display: none !important;
+        /* nascondi solo l’immagine */
+    }
+
+    /* Se vuoi aggiungere la label "Marca:", "Anno:" ecc. prima dei valori, via data-label */
+    .styled-table tbody tr.expanded td[data-label]::before {
+        content: attr(data-label) ": ";
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    /* 1) Se la tabella ha classe .any-expanded (gestita dal tuo JS),
+      nascondi tutta la colonna Immagine (sia thead che tbody). */
+    .styled-table.any-expanded thead th.col-img,
+    .styled-table.any-expanded tbody td.car-img {
+        display: none !important;
+    }
+
+    
+
+    /* =============================
+       3) MOSTRA TUTTE LE INTESTAZIONI
+          QUANDO ALMENO 1 RIGA È ESPANSA
+       ============================= */
+    /*
+      Se il tuo JS aggiunge la classe .any-expanded alla <table> 
+      quando trova almeno un .expanded, mostri TUTTE le <th> 
+      (tranne quella dell’immagine).
+    */
+    .styled-table.any-expanded thead th {
+        display: table-cell;
+    }
+
+    .styled-table.any-expanded thead th.col-img {
+        display: none;
+        /* l'immagine non serve più in stato espanso */
+    }
+}

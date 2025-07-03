@@ -1,0 +1,25 @@
+/* ===========================
+   Variabili dei Colori
+   =========================== */
+   :root {
+    /* blue navy */
+    --color-primary: #003366;
+    /* azzurro acceso*/
+    --color-secondary: #47A0FF;
+    /* Grigio chiaro */
+    --color-light: #c2c2c2;
+    /* Grigio chiaro / Bianco */
+    --color-accent: #70b8ff;
+    /* Grigio scuro  */
+    --color-text: #333333;
+    /* bianco */
+    --color-text-light: #ffffff;
+    /* background cards */
+    --color-back-cards: #f5f5f5;
+    /* bianco */
+    --color-white: #ffffff;
+    /* little black */
+    --color-little-black: #333;
+    /* Durata delle transizioni */
+    --transition-duration: 0.3s;
+}
