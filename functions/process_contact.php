@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verifica reCAPTCHA v2 Invisible
-    $recaptcha_secret = '6LegbtIqAAAAABBZoj17EqKYKy8roaxnKrh3zz2S';
+    $recaptcha_secret = '';
     $recaptcha_response = $_POST['g-recaptcha-response'];
 
     $response = file_get_contents(""); //link google recaptcha
