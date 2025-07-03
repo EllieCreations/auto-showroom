@@ -23,7 +23,7 @@ Elektra Marzocchi
 ---
 
 ## 📁 Struttura del progetto
-
+```txt
 root:
 │   .htaccess                   #file configurazione
 │   index.php                   #home del sito
@@ -104,7 +104,7 @@ root:
         details.php         # pagina dei dettagli di un auto
         inventario.php      # pagina dell'inventario di auto
 
-
+```
 ---
 
 ## 🛠️ Funzionalità principali
